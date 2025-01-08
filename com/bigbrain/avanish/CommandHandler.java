@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class CommandHandler {
 
     private static Scanner scanner;
+    private Game game = new Game();
 
     public static void main(String[] args) {
 
@@ -37,10 +38,18 @@ public class CommandHandler {
                 break;
 
             case CMD.MOVE:
+                if (currentCommand.length % 2 != 0) { //if odd number - move is not correctly paired
+                    System.out.println(CMD.ERROR);
+                    return;
+                }
 
                 break;
 
             case CMD.PLACE:
+                if (currentCommand.length != 4) { //if even number - move is not correctly paired
+                    System.out.println(CMD.ERROR);
+                    return;
+                }
 
                 break;
 
