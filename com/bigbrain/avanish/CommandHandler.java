@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class CommandHandler {
 
     private static Scanner scanner;
-    private Game game = new Game();
+    private static Game game;
 
     public static void main(String[] args) {
 
@@ -30,11 +30,15 @@ public class CommandHandler {
         }
         switch (currentCommand[0]) {
             case CMD.START:
-
+                if (currentCommand.length != 2) { //if even number - move is not correctly paired
+                    System.out.println(CMD.ERROR);
+                    return;
+                }
+                game = new Game(currentCommand[1]);
                 break;
 
             case CMD.PASS:
-
+                game.turn();
                 break;
 
             case CMD.MOVE:
@@ -42,7 +46,6 @@ public class CommandHandler {
                     System.out.println(CMD.ERROR);
                     return;
                 }
-
                 break;
 
             case CMD.PLACE:
@@ -50,10 +53,10 @@ public class CommandHandler {
                     System.out.println(CMD.ERROR);
                     return;
                 }
-
                 break;
 
             case CMD.PRINT:
+                game.print();
 
                 break;
         }
